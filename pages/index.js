@@ -1,7 +1,17 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import math, { compare } from '../math'
+import React, { useRef } from "react";
 
 export default function Home() {
+  const inputRef = useRef(null);
+  const inputRef2 = useRef(null);
+  const handleSubmitButton = () => {
+    const parsed = parseInt(inputRef.current.value,10);
+    const parsed2 = parseInt(inputRef2.current.value,10);
+    alert(compare(parsed,parsed2));
+  }
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -11,13 +21,17 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to <a href="https://nextjs.org">MaumauLand!</a>
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+          Ici on casse des maths {' '}
         </p>
+
+        <input type="text" ref={inputRef}  />
+        <input type="text" ref={inputRef2} />
+
+        <input type="submit" value="submit" onClick={handleSubmitButton} />
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
