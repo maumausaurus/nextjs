@@ -1,17 +1,31 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import math, { compare } from '../math'
-import React, { useRef } from "react";
+import math, { compare, divide } from '../math'
+import React, { useRef, useState } from "react";
 
 export default function Home() {
   const inputRef = useRef(null);
   const inputRef2 = useRef(null);
-  const handleSubmitButton = () => {
-    const parsed = parseInt(inputRef.current.value,10);
-    const parsed2 = parseInt(inputRef2.current.value,10);
-    alert(compare(parsed,parsed2));
+  const handleCompareButton = () => {
+    const parsed = parseInt(inputRef.current.value, 10);
+    const parsed2 = parseInt(inputRef2.current.value, 10);
+    alert(compare(parsed, parsed2));
   }
-  
+  const handleDivideButton = () => {
+    const parsed = parseInt(inputRef.current.value, 10);
+    const parsed2 = parseInt(inputRef2.current.value, 10);
+    alert(divide(parsed, parsed2));
+  }
+
+  const [inputUpperValue, setUpperInputValue] = useState("");
+  const handleInputChange = (e) => {
+    setUpperInputValue(e.target.value)
+  }
+
+  const handleTotobutton = () => {
+    alert(inputUpperValue);
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -28,10 +42,14 @@ export default function Home() {
           Ici on casse des maths {' '}
         </p>
 
-        <input type="text" ref={inputRef}  />
-        <input type="text" ref={inputRef2} />
+        <input type="text" defaultValue="2" ref={inputRef} />
+        <input type="text" defaultValue="5" ref={inputRef2} />
 
-        <input type="submit" value="submit" onClick={handleSubmitButton} />
+        <input type="submit" value="compare" onClick={handleCompareButton} />
+        <input type="button" value="divide" onClick={handleDivideButton} />
+
+        <input value={inputUpperValue} onChange={handleInputChange} />
+        <input type="button" value="Toto" onClick={handleTotobutton} />
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
